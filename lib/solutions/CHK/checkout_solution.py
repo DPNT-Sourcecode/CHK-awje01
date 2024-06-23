@@ -6,7 +6,8 @@ prices = {
     "A": 50,
     "B": 30,
     "C": 20,
-    "D": 15
+    "D": 15,
+    "E": 40
 }
 
 discounts = {
@@ -18,6 +19,10 @@ discounts = {
         "count": 2,
         "price": 45
     },
+    "E": {
+        "count": 2,
+        "price": "B"
+    }
 }
 
 
@@ -43,12 +48,18 @@ def checkout(skus: str):
         if item_discount := discounts.get(item_name):
             remainder = item_count % item_discount["count"]
 
-            total += (item_count // item_discount["count"]) * item_discount["price"]
-            if remainder != 0:
-                total += remainder * item_price
+            discount_price = item_discount["price"]
+            if type(discount_price) is int:
+                total += (item_count // item_discount["count"]) * item_discount["price"]
+                if remainder != 0:
+                    total += remainder * item_price
+
+            elif type(discount_price) is str:
+                total += prices[discount_price]
 
         # no discounts to apply
         else:
             total += item_count * item_price
 
     return total
+
