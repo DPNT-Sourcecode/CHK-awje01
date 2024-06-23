@@ -44,7 +44,7 @@ def checkout(skus: str):
             remainder = item_count % item_discount["count"]
 
             if remainder == 0:
-                total += item_count * item_price
+                total += (item_count // item_discount["count"]) * item_discount["count"]
 
             else:
                 total += remainder * item_price
@@ -55,6 +55,7 @@ def checkout(skus: str):
             total += item_count * item_price
 
     return total
+
 
 
 
