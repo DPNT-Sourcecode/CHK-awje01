@@ -1,6 +1,6 @@
 import re
 
-regex = re.compile("[^a-zA-Z]")
+regex = re.compile("[A-Z]+$")
 
 prices = {
     "A": 50,
@@ -30,16 +30,14 @@ def checkout(skus: str):
     if skus == '':
         return 0
 
-    cleaned_skus = regex.sub('', skus).upper()
-    if cleaned_skus == '':
-        # illegal input
+    if not regex.match(skus):
         return -1
 
     total = 0
     item_names = prices.keys()
     for item_name in item_names:
         item_price = prices[item_name]
-        item_count = skus.count(item_name)
+        item_count = skus.upper().count(item_name)
 
         # apply discount
         if item_discount := discounts.get(item_name):
@@ -55,6 +53,7 @@ def checkout(skus: str):
             total += item_count * item_price
 
     return total
+
 
 
 
