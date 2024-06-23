@@ -11,16 +11,9 @@ prices = {
 }
 
 discounts = {
-    "A": {
-        3: 130,
-        5: 200
-    },
-    "B": {
-        2: 45
-    },
-    "E": {
-        2: "B"
-    }
+    "A": [(5, 200), (3, 130)],
+    "B": [(2, 45)],
+    "E": [(2, "B")]
 }
 
 
@@ -44,29 +37,21 @@ def checkout(skus: str):
 
         # apply discount
         if item_discount := discounts.get(item_name):
-            discounts = []
-            for c, v in enumerate(item_discount):
-                if c %
+            for discount in item_discount:
+                discount_count, discount_price = discount
+                remainder = item_count % discount_count
 
-            # remainder = item_count % item_discount[item_count]
-            #
-            # discount_price = item_discount["price"]
-            # if type(discount_price) is int:
-            #     total += (item_count // item_discount["count"]) * discount_price
-            #
-            # elif type(discount_price) is str:
-            #     total += (item_count // item_discount["count"]) * prices[discount_price]
-            #
-            # if remainder != 0:
-            #     total += remainder * item_price
+                if type(discount_price) is int:
+                    total += (item_count // discount_count) * discount_price
+
+                elif type(discount_price) is str:
+                    total += (item_count // discount_count) * prices[discount_price]
+
+                if remainder != 0:
+                    total += remainder * item_price
 
         # no discounts to apply
         else:
             total += item_count * item_price
 
     return total
-
-
-
-
-
