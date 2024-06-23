@@ -16,12 +16,10 @@ discounts = {
         5: 200
     },
     "B": {
-        "count": 2,
-        "price": 45
+        2: 45
     },
     "E": {
-        "count": 2,
-        "price": "B"
+        2: "B"
     }
 }
 
@@ -46,7 +44,7 @@ def checkout(skus: str):
 
         # apply discount
         if item_discount := discounts.get(item_name):
-            remainder = item_count % item_discount["count"]
+            remainder = item_count % item_discount[item_count]
 
             discount_price = item_discount["price"]
             if type(discount_price) is int:
@@ -63,6 +61,7 @@ def checkout(skus: str):
             total += item_count * item_price
 
     return total
+
 
 
 
