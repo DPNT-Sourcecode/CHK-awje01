@@ -12,8 +12,8 @@ prices = {
 
 discounts = {
     "A": {
-        "count": 3,
-        "price": 130
+        3: 130,
+        5: 200
     },
     "B": {
         "count": 2,
@@ -63,5 +63,6 @@ def checkout(skus: str):
             total += item_count * item_price
 
     return total
+
 
 
