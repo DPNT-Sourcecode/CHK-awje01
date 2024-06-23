@@ -52,9 +52,3 @@ def checkout(skus: str):
             total += item_count * item_price
 
     return total
-
-
-
-
-
-

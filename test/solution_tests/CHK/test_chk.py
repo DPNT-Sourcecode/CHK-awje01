@@ -13,4 +13,3 @@ def test_chk_r1():
 
     skus = "BBB"
     assert checkout_solution.checkout(skus) == 75
-
