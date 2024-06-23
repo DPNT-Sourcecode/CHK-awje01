@@ -9,6 +9,13 @@ prices = {
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+    
+    # clean input
+    # check for valid input
+    # count items
+    # apply discounts & calculate total
+    pass
+
 
 
 
