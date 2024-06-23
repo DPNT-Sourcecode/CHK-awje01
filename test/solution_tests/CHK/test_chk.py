@@ -3,7 +3,7 @@ from solutions.CHK import checkout_solution
 
 def test_chk_r1():
     skus = "AAABB"
-    assert checkout_solution.checkout(skus) == 130
+    assert checkout_solution.checkout(skus) == 175
 
     skus = "AAAA"
     assert checkout_solution.checkout(skus) == 180
@@ -13,3 +13,4 @@ def test_chk_r1():
 
     skus = "BBB"
     assert checkout_solution.checkout(skus) == 75
+
