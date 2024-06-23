@@ -40,22 +40,24 @@ def checkout(skus: str):
             if item_discount := discounts.get(item_name):
                 for discount in item_discount:
                     discount_count, discount_price = discount
+
                     remainder = item_count % discount_count
+                    if remainder == item_count:
+                        continue
 
                     if remainder == 0:
                         total += (item_count // discount_count) * discount_price
                         break
 
-                    else:
-                        total += remainder * item_price
-                        if type(discount_price) is int:
-                            total += (item_count // discount_count) * discount_price
+                    total += remainder * item_price
+                    if type(discount_price) is int:
+                        total += (item_count // discount_count) * discount_price
 
-                        elif type(discount_price) is str:
-                            total += (item_count // discount_count) * prices[discount_price]
+                    elif type(discount_price) is str:
+                        total += (item_count // discount_count) * prices[discount_price]
 
-                        item_count -= remainder
-                        continue
+                    item_count -= remainder
+                    continue
 
             # no discounts to apply
             else:
@@ -63,4 +65,5 @@ def checkout(skus: str):
                 break
 
     return total
+
 
