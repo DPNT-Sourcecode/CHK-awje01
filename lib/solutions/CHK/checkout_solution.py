@@ -50,16 +50,18 @@ def checkout(skus: str):
 
             discount_price = item_discount["price"]
             if type(discount_price) is int:
-                total += (item_count // item_discount["count"]) * item_discount["price"]
-                if remainder != 0:
-                    total += remainder * item_price
+                total += (item_count // item_discount["count"]) * discount_price
 
             elif type(discount_price) is str:
-                total += prices[discount_price]
+                total += (item_count // item_discount["count"]) * prices[discount_price]
+
+            if remainder != 0:
+                total += remainder * item_price
 
         # no discounts to apply
         else:
             total += item_count * item_price
 
     return total
+
 
