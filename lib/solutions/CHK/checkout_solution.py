@@ -16,15 +16,19 @@ def checkout(skus):
     if type(skus) is not str:
         return -1
 
-    cleaned_skus = regex.sub('', skus)
+    if skus == '':
+        return 0
+
+    cleaned_skus = regex.sub('', skus).upper()
     if cleaned_skus == '':
-        return
+        # illegal input
+        return -1
 
-    
+    item_names = prices.keys()
 
-    # clean input
-    # check for valid input
+
     # count items
     # apply discounts & calculate total
     pass
+
 
