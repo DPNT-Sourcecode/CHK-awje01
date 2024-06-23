@@ -44,11 +44,17 @@ def checkout(skus: str):
         # apply discount
         if item_discount := discounts.get(item_name):
             remainder = item_count % item_discount["count"]
-            total += (remainder * item_price) + item_discount["price"] * (item_count - remainder)
+            if remainder == 0:
+                total += item_discount["price"] * (item_count / item_discount["count"])
+
+            else:
+                total += remainder * item_price
+                total += ((item_count - remainder) / item_discount["count"]) * item_price
 
         else:
             total += item_count * item_price
 
     return total
+
 
 
