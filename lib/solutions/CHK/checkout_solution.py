@@ -43,17 +43,13 @@ def checkout(skus: str):
         if item_discount := discounts.get(item_name):
             remainder = item_count % item_discount["count"]
             if remainder == 0:
-                total += item_discount["price"] * (item_count / item_discount["count"])
+                total += item_discount["price"] * int(item_count / item_discount["count"])
 
             else:
                 total += remainder * item_price
-                total += ((item_count - remainder) / item_discount["count"]) * item_price
+                total += (int(item_count - remainder) / item_discount["count"]) * item_price
 
         else:
             total += item_count * item_price
 
     return total
-
-
-
-
